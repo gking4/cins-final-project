@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block title %}
+{{ title }}
+{% endblock %}
+{% block content %}
+<!--See login and register.html on how to make the form look nicer-->
+{% if request.user.is_authenticated %}
+    <form action="/" method="post"> <!-- the action is the location it is submitting the value to, so once this moves off of homepage change it-->
+        {% csrf_token %}
+        {{ form }} <!--figure out how to make the date field be calander selectable-->
+        <!--figure out how to make this button redirect back to homepage only if valid-->
+        <input type="submit" class="button" value="Create Bracket">
+    </form>
+    <!--lecture 10 at 59 minute mark shows vue example 3 that might be useful for doing different things on button click?-->
+{% endif %}
+{% endblock %}

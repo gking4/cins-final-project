@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% load static %}
+
+
+            {% block title %}
+            {{ title }}
+            {% endblock %}
+            {% block css %}
+            <link rel="stylesheet" href="/static/css/foundation.css">
+            {% endblock %}
+
+        {% block content %}
+        <table> <!--Figure out how to generate pages for each bracket,
+           then have clicking on name take you there-->
+            <thead>
+              <tr>
+                <th width="200">Bracket Name</th>
+                <th>Description</th>
+                <th width="150">Host Name</th>
+              </tr>
+            </thead>
+            <tbody> <!--lecture 10 at 1 hour mark shows example of how to autorefresh data, use that to display tournament list so all users see updates when other users post?-->
+              {% for b in brackets %}
+              <tr>
+                <td><a href="/tournaments/{{ b.id }}/">{{ b.bracket_name }}</a></td>
+                <td>{{ b.tournament_description }}</td>
+                <td>{{ b.host }}</td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+         <!-- <div id="app"> 
+            {% verbatim %} <!--this tells django to read stuff inbetween exactly as it is, this way {{}} doesnt get interpreted as django code-->
+           <!-- {{ message }}
+            {% endverbatim %}
+          </div>
+          <div id="app-2">
+            <span v-bind:title="message">
+              Hover your mouse over me for a few seconds
+              to see my dynamically bound title!
+            </span>
+          </div> -->
+        {% endblock %}
+        {% block scripts %}
+        <script src="{% static "/js/myvue.js" %}"></script>
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+        {% endblock %}
